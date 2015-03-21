@@ -18,9 +18,9 @@ int motor = 4;
 byte pos = 0; // variable to store starting servo position
 
 void setup() {
-  panServo.attach(9); //pan servo on pin 9
+  panServo.attach(8); //pan servo works better on pin 8 than 9
   tiltServo.attach(10); //tilt servo on pin 10
- // panServo.write(90); //added this for second sketch 
+  panServo.write(180); //added this for second sketch 
   //tiltServo.write(90); // hoping to halt wild start up swing
   //motor.setSpeed(230); // set dc motor speed to 254 of 0-255 range
    pinMode(motor, OUTPUT); 
@@ -29,14 +29,13 @@ void setup() {
 void loop() {
   
    panServo.write(180);             
-    delay(4000); ////stops motor for 8 seconds 
-  for(pos = 180; pos>=10; pos-=1)// goes from 180 degrees to 0 degrees
+  for(pos = 180; pos>=1; pos-=1)// goes from 180 degrees to 0 degrees
   {                                
     panServo.write(pos);              // tell servo to go to position in variable 'pos' 
     delay(15); // waits 15ms for the servo to reach the position 
 
   } 
- // panServo.detach();
+panServo.detach();
   
 
  /* for(pos = 0; pos < 180; pos += 1) { //servo moves 0 degrees to 180 degrees in steps of 1 degree
@@ -57,9 +56,10 @@ void loop() {
   
   motorOnThenOff();    //run motor befor panServo goes back
   
- panServo.write(10);              
-    //delay(4000); //stops motor for 4 seconds   
-  for(pos = 10; pos <= 179; pos +=1) // goes from 0 degrees to 180 degrees 
+ panServo.attach(8);
+  
+ panServo.write(0);              
+  for(pos = 0; pos <= 179; pos +=1) // goes from 0 degrees to 180 degrees 
   {                                  // in steps of 1 degree 
     panServo.write(pos);              // tell servo to go to position in variable 'pos' 
     delay(15);      // waits 15ms for the servo to reach the position
@@ -71,7 +71,7 @@ void loop() {
   }*/
   delay(1000);
  
-//Pulse width Moduelation, Arduino servo hold position 
+//Pulse width Moduleation, Arduino servo hold position 
 
 }
 void motorOnThenOff(){
